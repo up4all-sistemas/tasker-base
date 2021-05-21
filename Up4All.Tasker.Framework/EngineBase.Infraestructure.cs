@@ -8,6 +8,7 @@ using Up4All.Tasker.Framework.Contracts;
 using Up4All.Tasker.Framework.Extensions.Strings;
 
 using Task = System.Threading.Tasks.Task;
+using Newtonsoft.Json;
 
 namespace Up4All.Tasker.Framework
 {
@@ -34,8 +35,10 @@ namespace Up4All.Tasker.Framework
                 _busClient.RegisterHandler(data =>
                 {
                     try
-                    {
-                        var metadata = data.GetBody<Metadata>();
+                    {                        
+                        var metadata = data.GetBody<Metadata>(new JsonSerializerSettings {
+                            ConstructorHandling = ConstructorHandling.AllowNonPublicDefaultConstructor
+                        });
                         Process(metadata);
                         return MessageReceivedStatusEnum.Completed;
                     }

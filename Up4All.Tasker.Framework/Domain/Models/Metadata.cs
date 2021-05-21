@@ -1,11 +1,16 @@
-﻿using Newtonsoft.Json.Linq;
+﻿
+
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Up4All.WebCrawler.Domain.Models
 {
     public class Metadata
     {
+        [JsonProperty]
         public JObject Data { get; private set; }
 
+        [JsonProperty]
         public int TaskId { get; private set; }
 
         public Metadata()
